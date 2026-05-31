@@ -2,9 +2,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 import {
   View, Text, FlatList, StyleSheet, TouchableOpacity,
   TextInput, Modal, Alert, RefreshControl, KeyboardAvoidingView, Platform,
-  SafeAreaView
 } from 'react-native';
 import { api } from '../services/api';
+import { SafeAreaView } from 'react-native-safe-area-context';
 // 引入圖示
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
