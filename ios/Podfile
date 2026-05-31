@@ -1,4 +1,6 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
+source 'https://github.com/CocoaPods/Specs.git'
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
     "react-native/scripts/react_native_pods.rb",
@@ -9,6 +11,7 @@ platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
 linkage = ENV['USE_FRAMEWORKS']
+use_frameworks! :linkage => :static
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
@@ -31,4 +34,14 @@ target 'FinanceApp' do
       # :ccache_enabled => true
     )
   end
+  # 這裡指定你用到的字體庫，建議至少包含 MaterialCommunityIcons
+  config = use_native_modules!
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => true
+  )
+
+  # 加入這段
+  node_modules_path = "../node_modules/react-native-vector-icons"
+  pod 'RNVectorIcons', :path => node_modules_path
 end
