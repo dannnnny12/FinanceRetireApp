@@ -68,6 +68,9 @@ npm run ios
 
 # OR using Yarn
 yarn ios
+
+# OR using npx
+npx react-native run-ios
 ```
 
 ### Step 3: Make Changes
